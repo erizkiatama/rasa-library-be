@@ -1,4 +1,4 @@
 django>=5.0.0,<5.1.0
-djangorestframework
+djangorestframework>=3.14.0
 pyyaml
 django-cors-headers
