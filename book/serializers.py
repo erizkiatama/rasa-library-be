@@ -22,7 +22,7 @@ class ListBookSerializer(serializers.ModelSerializer):
 
     def get_total_volumes(self, obj):
         if obj.has_volumes:
-            return obj.book_volumes.count()
+            return obj.volumes.count()
         return 0
 
     def get_type(self, obj):
@@ -45,7 +45,7 @@ class ListBookSerializer(serializers.ModelSerializer):
 class RetrieveBookSerializer(serializers.ModelSerializer):
     author = AuthorSerializer(read_only=True)
     type = serializers.SerializerMethodField()
-    all_volumes = BookVolumeSerializer(read_only=True, many=True)
+    volumes = BookVolumeSerializer(read_only=True, many=True)
 
     def get_type(self, obj):
         return obj.BookType(obj.type).label
@@ -59,6 +59,6 @@ class RetrieveBookSerializer(serializers.ModelSerializer):
             'type',
             'has_volumes',
             'image_url',
-            'all_volumes'
+            'volumes'
         ]
         depth = 1
